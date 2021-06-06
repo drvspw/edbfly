@@ -93,7 +93,7 @@ sign(Key, Msg) when is_list(Key), is_list(Msg) ->
     sign(list_to_binary(Key), list_to_binary(Msg));
 
 sign(Key, Msg) when is_binary(Key), is_binary(Msg) ->
-    crypto:hmac(sha256, Key, Msg).
+    crypto:mac(hmac, sha256, Key, Msg).
 
 signing_key(SecretAccessKey, Date, Region, Service) ->
     KDate = sign("AWS4" ++ SecretAccessKey, Date),
